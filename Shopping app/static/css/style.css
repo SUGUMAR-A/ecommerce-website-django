@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+
+.carousel-item img{
+    object-fit: cover;
+    object-position: top;
+    height: 60vh;
+    overflow: hidden;
+}
+html{
+    font-size: 14px;
+}
+body{
+    font-family: 'poppins',sans-serif;
+}
+a{
+    text-decoration: none;
+}
+
+
+.old_price{
+ font-weight: bold;
+ color: red;
+}
+.new_price{
+    font-weight: bold;
+    background-color:palegreen;
+    color: gray;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.pic-box{
+    position: relative;
+}
+
+.hot{
+    background-color: orangered;
+    color: white;
+    text-align: center;
+    width: 70px;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 2; 
+}

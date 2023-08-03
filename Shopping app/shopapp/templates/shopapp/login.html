@@ -1,0 +1,43 @@
+{% extends 'shopapp/layouts/main.html'%}
+
+{% block title %}
+
+Register|shopping app
+
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'shopapp/inc/navbar.html'%}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>User Login</h1>
+            {% include 'shopapp/inc/message.html'%}
+        </div>
+    </div>
+</div>
+<section class="py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form method="post" action="">
+                    {% csrf_token%}
+                    <div class="mb-4">
+                        <label for="" class="form-label">User-name</label>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter User Name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" name="Password" id="Password" class="form-control" placeholder="Enter Your Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

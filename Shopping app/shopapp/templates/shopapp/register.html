@@ -1,0 +1,73 @@
+{% extends 'shopapp/layouts/main.html'%}
+
+{% block title %}
+
+Register|shopping app
+
+{% endblock title %}
+
+
+{% block content %}
+
+{% include 'shopapp/inc/navbar.html'%}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>registration page</h1>
+            {% include 'shopapp/inc/message.html'%}
+        </div>
+    </div>
+</div>
+<section class="py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <form method="post" action="" >
+                    {% csrf_token %}
+                    <label for="username" class="form-label">User Name</label>
+                    <div class="mb-4">
+                        {{form.username}}
+                       
+                    </div>
+                    <label for="username" class="form-label">User Email</label>
+                    <div class="mb-4">
+                        {{form.email}}
+                       
+                    </div>
+                    <label for="username"class="form-label">Enter Password</label>
+                    <div class="mb-4">
+                        {{form.password1}}
+                        
+                    </div>
+                    <label for="username"class="form-label">Conform Password</label>
+                    <div class="mb-4">
+            
+                        {{form.password2}}
+                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                <p class="my-2">Already User ? <a href="{% url 'login' %}">Login now</a></p>
+            </div>
+            <div class="col-6">
+                {% if form.errors.username %}
+                <label for="" class="text-danger d-block">{{ form.errors.username }}</label>
+                {% endif %}
+
+                {% if form.errors.email %}
+                <label for="" class="text-danger d-block">{{ form.errors.email }}</label>
+                {% endif %}
+
+                {% if form.errors.password1 %}
+                <label for="" class="text-danger d-block">{{ form.errors.password1 }}</label>
+                {% endif %}
+
+                {% if form.errors.password2 %}
+                <label for="" class="text-danger d-block">{{ form.errors.password2 }}</label>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

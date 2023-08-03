@@ -1,0 +1,85 @@
+{% extends 'shopapp/layouts/main.html' %}
+
+
+{% block title %}
+Home|shopping app
+{% endblock title%}
+
+
+{% block content %}
+<section class="bg-light py-4 my-5"style="min-height: 600px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">{{products}} Details</h4>
+                <hr style="border-color:#b8bfc2 ;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'collection' products.catagory.name %}">Collections</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{products}}</li>
+                    </ol>
+                  </nav>
+                  {% include 'shopapp/inc/message.html'%}
+            </div>
+            <div class="col-4 my-3 pic-box">
+                {% if products.trending %}
+                <div class="hot">Trending</div>
+                {% endif %}
+                <img src="{{products.product_image.url}}" class="card-img-top" style=" height: 350px;" alt="{{products}}">
+            </div>
+            <div class="col-8 my-3 ">
+                
+                <h5 class="text-success">{{products | upper }}</h5>
+                <p>{{products.vendor}}</p>
+                <p>{{products.description}}</p>
+                <h6 class="my-2 text-danger">Current price:RS. <span>{{products.original_price}}</span></h6>
+                <h5 class="my-2 text-primary">Selling price:RS. <span>{{products.selling_price}}</span></h5>
+                <div class="my-3">
+                    {% if products.quantity > 0 %}
+                    <p>
+                        <div class="input-group" style="width: 150px;">
+                            <button class="input-group-text bg-success text-light" id="btnminus"><i class="fa fa-minus"></i></button>
+                            <input type="text" name="qty" id="txtqty" value="1" class="form-control text-center">
+                            <button class="input-group-text bg-success text-light" id="btnplus"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </p>
+                    <div class="mb-2">
+                    <a href="#"class="btn btn-primary">Available Stocks-><span style="font-weight: bold;"> {{products.quantity}}</span></a>
+                    </div>
+                    <button class="btn btn-info"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                    {% else %}
+                    <button class="btn btn-info"><i class="fa fa-minus"></i> Out of stock</button>
+                    {% endif %}
+                    <button class="btn btn-danger mx-1"><i class="fa fa-heart"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded",function(event){
+        const btnplus=document.getElementById("btnplus")
+        const btnminus=document.getElementById("btnminus")
+        const text=document.getElementById("txtqty")
+
+        btnplus.addEventListener("click",function(){
+            let qty=parseInt(text.value,10)
+            qty=isNaN(qty)?0:qty
+            if(qty<10){
+                qty++
+                text.value=qty
+            }
+        })
+        btnminus.addEventListener("click",function(){
+            let qty=parseInt(text.value,10)
+            qty=isNaN(qty)?0:qty
+            if(qty>1){
+                qty--
+                text.value=qty
+            }
+        })
+    });
+</script>
+{% endblock content%}
